@@ -1,0 +1,14 @@
+# A sample Guardfile
+# More info at https://github.com/guard/guard#readme
+
+guard :bundler do
+  watch('Gemfile')
+  watch(/^.+\.gemspec/)
+end
+
+guard :rspec, :cli => '--color' do
+  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^lib/(.+)\.rb$})
+  watch(%r{^lib/nlp_toolz/(.+)\.rb$}) { |m| "spec/lib/#{m[1]}_spec.rb" }
+  watch("spec/spec_helper.rb")  { :spec }
+end
