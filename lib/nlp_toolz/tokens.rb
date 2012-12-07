@@ -14,7 +14,7 @@ module NlpToolz
     TokenizerModel = Rjb::import('opennlp.tools.tokenize.TokenizerModel')
     TokenizerME = Rjb::import('opennlp.tools.tokenize.TokenizerME')
     
-    attr_accessor :input, :lang, :model_name, :tokens
+    attr_accessor :input, :lang, :model, :model_name, :tokens
     
     def initialize(input, lang = nil)
       @input = input
@@ -27,6 +27,10 @@ module NlpToolz
       @tokens = @tokenizer.tokenize(@input)
     end
     
+    def has_model?
+      @model
+    end
+    
     private
     
     def get_model
@@ -35,7 +39,7 @@ module NlpToolz
         @model = TokenizerModel.new(FileInputStream.new(model_file))
         @tokenizer = TokenizerME.new(@model)
       else
-        raise 'file not found'
+        @model = false
       end
     end
     

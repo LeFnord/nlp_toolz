@@ -27,9 +27,26 @@ describe NlpToolz do
         sent.should respond_to(:model_name)
       end
       
+      it "should respond to 'model'" do
+        sent = NlpToolz::Sentences.new(@text)
+        sent.should respond_to(:model)
+      end
+      
       it "should respond to 'sentences'" do
         sent = NlpToolz::Sentences.new(@text)
         sent.should respond_to(:sentences)
+      end
+    end
+    
+    describe "model" do
+      it "should have a model, if lang 'en'" do
+        sent = NlpToolz::Sentences.new(@text,'en')
+        sent.has_model?.should be_true
+      end
+      
+      it "should not have a model, if lang not known" do
+        sent = NlpToolz::Sentences.new(@g_text)
+        sent.has_model?.should be_false
       end
     end
     
@@ -45,14 +62,6 @@ describe NlpToolz do
     it "should build the right model name" do
       sent = NlpToolz::Sentences.new(@text)
       sent.model_name.should == "en-sent.bin"
-    end
-    
-    it "should not raise an error, if model file exists" do
-      expect{ sent = NlpToolz::Sentences.new(@text) }.to_not raise_error
-    end
-    
-    it "should not raise an error, if model file not exists" do
-      expect{ sent = NlpToolz::Sentences.new(@g_text) }.to raise_error('file not found')
     end
     
     it "should split incoming text into sentences" do

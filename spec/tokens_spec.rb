@@ -25,9 +25,26 @@ describe NlpToolz do
         text.should respond_to(:model_name)
       end
       
+      it "should respond to 'model'" do
+        text = NlpToolz::Tokens.new(@text)
+        text.should respond_to(:model)
+      end
+      
       it "should respond to 'model_name'" do
         text = NlpToolz::Tokens.new(@text)
         text.should respond_to(:tokens)
+      end
+    end
+    
+    describe "model" do
+      it "should have a model, if lang 'en'" do
+        sent = NlpToolz::Tokens.new(@text,'en')
+        sent.has_model?.should be_true
+      end
+      
+      it "should not have a model, if lang not known" do
+        sent = NlpToolz::Tokens.new(@g_text)
+        sent.has_model?.should be_false
       end
     end
     
@@ -43,14 +60,6 @@ describe NlpToolz do
     it "should build the right model name" do
       text = NlpToolz::Tokens.new(@text)
       text.model_name.should == "en-token.bin"
-    end
-    
-    it "should not raise an error, if model file exists" do
-      expect{ text = NlpToolz::Tokens.new(@text) }.to_not raise_error
-    end
-    
-    it "should raise an error, if model file not exists" do
-      expect{ text = NlpToolz::Tokens.new(@g_text) }.to raise_error('file not found')
     end
     
     it "should be a arrar after tokenizing" do

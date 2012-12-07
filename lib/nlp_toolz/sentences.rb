@@ -15,7 +15,7 @@ module NlpToolz
     SentenceDetectorME = Rjb::import('opennlp.tools.sentdetect.SentenceDetectorME')
     SentenceModel      = Rjb::import('opennlp.tools.sentdetect.SentenceModel')
     
-    attr_accessor :input, :lang, :model_name, :sentences
+    attr_accessor :input, :lang, :model, :model_name, :sentences
     
     def initialize(input,lang = nil)
       @input = input
@@ -28,6 +28,10 @@ module NlpToolz
       @sentences = @sentence_detector.sentDetect(@input).to_a
     end
     
+    def has_model?
+      @model
+    end
+    
     private
     
     def get_model
@@ -36,7 +40,8 @@ module NlpToolz
         @model = SentenceModel.new(FileInputStream.new(model_file))
         @sentence_detector = SentenceDetectorME.new(@model)
       else
-        raise 'file not found'
+        @model = false
+        # raise 'file not found'
       end
     end
     
