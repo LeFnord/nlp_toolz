@@ -15,7 +15,7 @@ module NlpToolz
     POSModel = Rjb::import('opennlp.tools.postag.POSModel')
     POSTaggerME = Rjb::import('opennlp.tools.postag.POSTaggerME')
     
-    attr_accessor :input, :lang, :model_name, :tagged_tokens
+    attr_accessor :input, :lang, :model, :model_name, :tagged_tokens
     
     def initialize(input, lang = nil)
       @input = input
@@ -29,6 +29,10 @@ module NlpToolz
       @tagged_tokens = tokenize_it @tagger.tag(@tokens)
     end
     
+    def has_model?
+      @model
+    end
+    
     private
     
     def get_model
@@ -37,7 +41,7 @@ module NlpToolz
         @model = POSModel.new(FileInputStream.new(model_file))
         @tagger = POSTaggerME.new(@model)
       else
-        raise 'file not found'
+        @model = false
       end
     end
     

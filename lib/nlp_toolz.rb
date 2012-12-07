@@ -28,8 +28,20 @@ module NlpToolz
   
   def self.get_sentences(input)
     text = NlpToolz::Sentences.new(input)
-    text.split_into_sentences
+    text.split_into_sentences if text.has_model?
   end
   
+  def self.tag_sentence(input)
+    sentence = NlpToolz::PosTags.new(input)
+    sentence.get_pos_tags if sentence.has_model?
+  end
   
+  def self.tag_text(input)
+    tagged_text = []
+    get_sentences(input).each do |sentence|
+      tagged_text << tag_sentence(sentence)
+    end
+    
+    tagged_text
+  end
 end
