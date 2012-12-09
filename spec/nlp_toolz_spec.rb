@@ -3,9 +3,7 @@ require "spec_helper"
 
 describe NlpToolz do
   before(:each) do
-    @text = "William Tecumseh Sherman (February 8, 1820 – February 14, 1891) was an American soldier, businessman, educator, and author.
-             He served as a general in the United States Army during the American Civil War (1861–65), receiving both recognition for his outstanding command of military strategy, and criticism for the harshness of the scorched earth policies he implemented in conducting total war against the Confederate States of America.
-             Military historian Basil Liddell Hart famously declared that Sherman was the first modern general."
+    @text = "William Tecumseh Sherman (February 8, 1820 – February 14, 1891) was an American soldier, businessman, educator, and author. He served as a general in the United States Army during the American Civil War (1861–65), receiving both recognition for his outstanding command of military strategy, and criticism for the harshness of the scorched earth policies he implemented in conducting total war against the Confederate States of America. Military historian Basil Liddell Hart famously declared that Sherman was the first modern general."
     @g_text = "μακεδονικού εκκεντροφόρου πολιτισμός του. την ανάφλεξης πολιτισμική. πολιτισμού του να. τόπος επειδή σε. καθορίσουν χρόνια Στα από."
   end
   
@@ -35,6 +33,7 @@ describe NlpToolz do
     
     it "should tag a whole text" do
       tagged_sentences = NlpToolz.tag_text(@text)
+      ap tagged_sentences
       tagged_sentences.should have(3).items
       tagged_sentences.should be_a Array
       tagged_sentences.first.should be_a Hash

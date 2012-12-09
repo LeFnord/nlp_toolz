@@ -1,6 +1,6 @@
 # NlpToolz
 
-TODO: Write a gem description
+Basic NLP tools, mostly based on OpenNLP, at this time `sentence finder`, `tokenizer` and `POS tagger` implemented.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+see: [lib/nlp_toolz.rb](lib/nlp_toolz.rb) and specs for usage
 
 ## Contributing
 
