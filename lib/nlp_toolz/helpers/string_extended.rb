@@ -1,11 +1,16 @@
+# coding:  utf-8
+
 class String
   def tokenize
     foo = self.encode('UTF-8', :invalid => :replace, :undef => :replace)
-    foo.gsub!("\"\'",'')
-    foo.gsub!(/\b\/\b/,' ')
-    foo.gsub!(/([\w]{3,90})([\(\)\.,;:!?])/,'\1 \2')
-    foo.gsub!(/([\(\)\.,;:!?])([\w]{3,90})/,'\1 \2')
-    foo
-    # self.gsub!(/([\w]{3,90})([\(\)\.,;:!?])/,'\1 \2').gsub!(/([\(\)\.,;:!?])([\w]{3,90})/,'\1 \2').gsub!(/\b\/\b/,' ').split
+    bar = foo.gsub(/["'„“,‘‘’“”«»‹›]/,'')       # quotation marks
+             .gsub(/\b\/\b/,' ')
+             .gsub(/([\[\(\{<])(\w)/,'\1 \2')   # left braces
+             .gsub(/(\w)([\]\)\}>])/,'\1 \2')   # right braces
+             .gsub(/([\w]{3,})([\.])/,'\1 \2')  # abbrevation?
+             .gsub(/([\.])([\w]{3,})/,'\1 \2')
+             .gsub(/(.)([,;:!?]+)/,'\1 \2')     # punctation
+    bar
   end
 end
+

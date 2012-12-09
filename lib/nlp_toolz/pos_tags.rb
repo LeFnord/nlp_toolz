@@ -26,6 +26,7 @@ module NlpToolz
     
     def get_pos_tags
       @tokens = @input.tokenize
+      ap @tokens
       @tagged_tokens = tokenize_it @tagger.tag(@tokens)
     end
     
