@@ -33,7 +33,6 @@ describe NlpToolz do
     
     it "should tag a whole text" do
       tagged_sentences = NlpToolz.tag_text(@text)
-      ap tagged_sentences
       tagged_sentences.should have(3).items
       tagged_sentences.should be_a Array
       tagged_sentences.first.should be_a Hash
