@@ -22,6 +22,7 @@ require "nlp_toolz/sentences"
 require "nlp_toolz/pos_tags"
 require "nlp_toolz/tokens"
 
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'jars'))
 
 module NlpToolz
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
