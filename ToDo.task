@@ -1,0 +1,2 @@
+- add alias methods, for compatibilty to treat
+- in treat, change only module for instance, which use: pos tagger, parser, sentencer, etc. 
