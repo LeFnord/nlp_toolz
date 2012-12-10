@@ -6,6 +6,7 @@
 # for java usage
 # require "java"
 require "rjb"
+# require "rjbextension"
 
 # external requirements
 require "awesome_print"
@@ -18,11 +19,10 @@ require "nlp_toolz/helpers/lang"
 require "nlp_toolz/helpers/string_extended"
 
 # NLP Tools
+require "nlp_toolz/load_jars"
 require "nlp_toolz/sentences"
 require "nlp_toolz/pos_tags"
 require "nlp_toolz/tokens"
-
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'jars'))
 
 module NlpToolz
   MODELS = File.join(File.dirname(__FILE__), '..', "models")

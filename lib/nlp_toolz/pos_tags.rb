@@ -8,8 +8,6 @@ module NlpToolz
   class PosTags
     include Lang
     
-    Rjb::load("jars/opennlp-tools-1.5.2.jar:jars/opennlp-maxent-3.0.2.jar",['-Xmx1024m','-Djava.awt.headless=true'])
-    
     # load java classes
     FileInputStream    = Rjb::import('java.io.FileInputStream')
     POSModel = Rjb::import('opennlp.tools.postag.POSModel')
