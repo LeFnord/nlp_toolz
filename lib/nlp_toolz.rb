@@ -26,19 +26,19 @@ require "nlp_toolz/tokens"
 module NlpToolz
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
   
-  def self.get_sentences(input)
-    text = NlpToolz::Sentences.new(input)
+  def self.get_sentences(input,lang = nil)
+    text = NlpToolz::Sentences.new(input,lang)
     text.split_into_sentences if text.has_model?
   end
   
-  def self.tag_sentence(input)
-    sentence = NlpToolz::PosTags.new(input)
+  def self.tag_sentence(input,lang = nil)
+    sentence = NlpToolz::PosTags.new(input,lang)
     sentence.get_pos_tags if sentence.has_model?
   end
   
-  def self.tag_text(input)
+  def self.tag_text(input,lang = nil)
     tagged_text = []
-    get_sentences(input).each do |sentence|
+    get_sentences(input,lang).each do |sentence|
       tagged_text << tag_sentence(sentence)
     end
     
