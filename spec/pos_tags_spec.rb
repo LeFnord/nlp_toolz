@@ -11,35 +11,20 @@ describe NlpToolz do
     end
     
     describe "attributes" do
-      it "should respond to 'input'" do
+      it "should respond to #attribute" do
         text = NlpToolz::PosTags.new(@text)
         text.should respond_to(:input)
-      end
-      
-      it "should respond to 'lang'" do
-        text = NlpToolz::PosTags.new(@text)
         text.should respond_to(:lang)
-      end
-      
-      it "should respond to 'model_name'" do
-        text = NlpToolz::PosTags.new(@text)
         text.should respond_to(:model_name)
-      end
-      
-      it "should respond to 'model'" do
-        text = NlpToolz::PosTags.new(@text)
         text.should respond_to(:model)
-      end
-      
-      it "should respond to 'tags'" do
-        text = NlpToolz::PosTags.new(@text)
-        text.should respond_to(:tagged_tokens)
+        text.should respond_to(:tokenized)
       end
     end
     
     describe "model" do
       it "should have a model, if lang 'en'" do
         sent = NlpToolz::PosTags.new(@text,'en')
+        sent.model_name.should == 'en-pos-maxent.bin'
         sent.has_model?.should be_true
       end
       
@@ -49,37 +34,43 @@ describe NlpToolz do
       end
     end
     
-    
-    it "should create a valid object" do
-      expect{ text = NlpToolz::PosTags.new(@text,"en") }.to_not raise_error
+    describe "object" do
+      it "should create a valid object" do
+        expect{ text = NlpToolz::PosTags.new(@text,"en") }.to_not raise_error
+      end
+      
+      it "should set the language of input" do
+        text = NlpToolz::PosTags.new(@text)
+        text.lang.should == "en"
+      end
+      
+      it "should build the right model name" do
+        text = NlpToolz::PosTags.new(@text)
+        text.model_name.should == "en-pos-maxent.bin"
+      end
+      
+      it "should have tokenized key 'tokens', after creation" do
+        text = NlpToolz::PosTags.new(@text,"en")
+        text.tokenized.should include(:tokens)
+      end
+      
+      it "should be a hash after pos tagging" do
+        text = NlpToolz::PosTags.new(@text,"en")
+        text.get_pos_tags
+        text.tokenized.should be_a Hash
+      end
+      
+      it "should get pos text of given text" do
+        text = NlpToolz::PosTags.new(@text,"en")
+        text.get_pos_tags
+        text.tokenized[:token].should have(15).items
+      end
+      
+      it "should have same count of tokens and tags" do
+        text = NlpToolz::PosTags.new(@d_text,"de")
+        text.get_pos_tags
+        text.tokenized[:token].length.should == text.tokenized[:tag].length
+      end
     end
-    
-    it "should set the language of input" do
-      text = NlpToolz::PosTags.new(@text)
-      text.lang.should == "en"
-    end
-    
-    it "should build the right model name" do
-      text = NlpToolz::PosTags.new(@text)
-      text.model_name.should == "en-pos-maxent.bin"
-    end
-    
-    it "should be a hash after pos tagging" do
-      text = NlpToolz::PosTags.new(@text,"en")
-      text.get_pos_tags
-      text.tagged_tokens.should be_a Hash
-    end
-    
-    it "should get pos text of given text" do
-      text = NlpToolz::PosTags.new(@text,"en")
-      text.get_pos_tags
-      text.tagged_tokens[:token].should have(15).items
-    end
-    
-    it "should have same count of tokens and tags" do
-      text = NlpToolz::PosTags.new(@d_text,"de")
-      text.get_pos_tags
-      text.tagged_tokens[:token].length.should == text.tagged_tokens[:tag].length
-    end
-  end
-end
+  end # POS Tags
+end # NlpToolz

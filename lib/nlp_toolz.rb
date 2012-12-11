@@ -23,9 +23,11 @@ require "nlp_toolz/load_jars"
 require "nlp_toolz/sentences"
 require "nlp_toolz/pos_tags"
 require "nlp_toolz/tokens"
+require "nlp_toolz/parser"
 
 module NlpToolz
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
+  JARS = File.join(File.dirname(__FILE__), '..', "jars")
   
   def self.get_sentences(input,lang = nil)
     text = NlpToolz::Sentences.new(input,lang)

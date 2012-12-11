@@ -2,7 +2,7 @@
 require "spec_helper"
 
 describe NlpToolz do
-  describe "tokens" do
+  describe "Tokens" do
     before(:each) do
       @text = "Military historian Basil Liddell Hart famously declared that Sherman was the first modern general."
       
@@ -10,28 +10,12 @@ describe NlpToolz do
     end
     
     describe "attributes" do
-      it "should respond to 'input'" do
+      it "should respond to #attribute" do
         text = NlpToolz::Tokens.new(@text)
         text.should respond_to(:input)
-      end
-      
-      it "should respond to 'lang'" do
-        text = NlpToolz::Tokens.new(@text)
         text.should respond_to(:lang)
-      end
-      
-      it "should respond to 'model_name'" do
-        text = NlpToolz::Tokens.new(@text)
         text.should respond_to(:model_name)
-      end
-      
-      it "should respond to 'model'" do
-        text = NlpToolz::Tokens.new(@text)
         text.should respond_to(:model)
-      end
-      
-      it "should respond to 'model_name'" do
-        text = NlpToolz::Tokens.new(@text)
         text.should respond_to(:tokens)
       end
     end
@@ -48,30 +32,32 @@ describe NlpToolz do
       end
     end
     
-    it "should create a valid object" do
-      expect{ text = NlpToolz::Tokens.new(@text,"en") }.to_not raise_error
-    end
+    describe "object" do
+      it "should create a valid object" do
+        expect{ text = NlpToolz::Tokens.new(@text,"en") }.to_not raise_error
+      end
     
-    it "should set the language of input" do
-      text = NlpToolz::Tokens.new(@text)
-      text.lang.should == "en"
-    end
+      it "should set the language of input" do
+        text = NlpToolz::Tokens.new(@text)
+        text.lang.should == "en"
+      end
     
-    it "should build the right model name" do
-      text = NlpToolz::Tokens.new(@text)
-      text.model_name.should == "en-token.bin"
-    end
+      it "should build the right model name" do
+        text = NlpToolz::Tokens.new(@text)
+        text.model_name.should == "en-token.bin"
+      end
     
-    it "should be a arrar after tokenizing" do
-      text = NlpToolz::Tokens.new(@text,"en")
-      text.tokenize
-      text.tokens.should be_a Array
-    end
+      it "should be a arrar after tokenizing" do
+        text = NlpToolz::Tokens.new(@text,"en")
+        text.tokenize
+        text.tokens.should be_a Array
+      end
     
-    it "should tokenize given text" do
-      text = NlpToolz::Tokens.new(@text,"en")
-      text.tokenize
-      text.tokens.should have(15).items
+      it "should tokenize given text" do
+        text = NlpToolz::Tokens.new(@text,"en")
+        text.tokenize
+        text.tokens.should have(15).items
+      end
     end
-  end
-end
+  end # Tokens
+end # NlpToolz

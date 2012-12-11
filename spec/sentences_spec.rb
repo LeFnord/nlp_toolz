@@ -12,28 +12,12 @@ describe NlpToolz do
     end
     
     describe "attributes" do
-      it "should respond to 'input'" do
+      it "should respond to #attribute" do
         sent = NlpToolz::Sentences.new(@text)
         sent.should respond_to(:input)
-      end
-      
-      it "should respond to 'lang'" do
-        sent = NlpToolz::Sentences.new(@text)
         sent.should respond_to(:lang)
-      end
-      
-      it "should respond to 'model_name'" do
-        sent = NlpToolz::Sentences.new(@text)
         sent.should respond_to(:model_name)
-      end
-      
-      it "should respond to 'model'" do
-        sent = NlpToolz::Sentences.new(@text)
         sent.should respond_to(:model)
-      end
-      
-      it "should respond to 'sentences'" do
-        sent = NlpToolz::Sentences.new(@text)
         sent.should respond_to(:sentences)
       end
     end
@@ -42,6 +26,7 @@ describe NlpToolz do
       it "should have a model, if lang 'en'" do
         sent = NlpToolz::Sentences.new(@text,'en')
         sent.has_model?.should be_true
+        sent.model_name.should == 'en-sent.bin'
       end
       
       it "should not have a model, if lang not known" do
@@ -50,24 +35,26 @@ describe NlpToolz do
       end
     end
     
-    it "should create a valid object" do
-      expect{ sent = NlpToolz::Sentences.new(@text) }.to_not raise_error
-    end
+    describe "object" do
+      it "should create a valid object" do
+        expect{ sent = NlpToolz::Sentences.new(@text) }.to_not raise_error
+      end
     
-    it "should set the language of input" do
-      sent = NlpToolz::Sentences.new(@text)
-      sent.lang.should == "en"
-    end
+      it "should set the language of input" do
+        sent = NlpToolz::Sentences.new(@text)
+        sent.lang.should == "en"
+      end
     
-    it "should build the right model name" do
-      sent = NlpToolz::Sentences.new(@text)
-      sent.model_name.should == "en-sent.bin"
-    end
+      it "should build the right model name" do
+        sent = NlpToolz::Sentences.new(@text)
+        sent.model_name.should == "en-sent.bin"
+      end
     
-    it "should split incoming text into sentences" do
-      text = NlpToolz::Sentences.new(@text,"en")
-      text.split_into_sentences
-      text.sentences.should have(3).items
+      it "should split incoming text into sentences" do
+        text = NlpToolz::Sentences.new(@text,"en")
+        text.split_into_sentences
+        text.sentences.should have(3).items
+      end
     end
-  end
-end
+  end # Sentences
+end # NlpToolz

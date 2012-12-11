@@ -13,18 +13,20 @@ module NlpToolz
     POSModel = Rjb::import('opennlp.tools.postag.POSModel')
     POSTaggerME = Rjb::import('opennlp.tools.postag.POSTaggerME')
     
-    attr_accessor :input, :lang, :model, :model_name, :tagged_tokens
+    attr_accessor :input, :lang, :model, :model_name, :tokenized
     
     def initialize(input, lang = nil)
       @input = input
       @lang = lang || get_language
       @model_name = "#{@lang}-pos-maxent.bin"
+      @tokenized = {tokens: @input.tokenize}
       get_model
     end
     
     def get_pos_tags
-      @tokens = @input.tokenize
-      @tagged_tokens = tokenize_it @tagger.tag(@tokens)
+      if self.has_model?
+        @tokenized = tokenize_it @tagger.tag(@tokenized[:tokens])
+      end
     end
     
     def has_model?
