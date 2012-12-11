@@ -8,4 +8,13 @@ module Lang
       
     response["lang"]
   end
+  
+  def alternative_langs lang
+    langs = {
+      en: [:eng, :english],
+      de: [:ger, :german]
+    }.each.collect{|x| x.flatten}
+    
+    # ap langs
+  end
 end

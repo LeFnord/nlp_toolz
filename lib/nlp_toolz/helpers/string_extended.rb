@@ -12,5 +12,9 @@ class String
              .gsub(/(.)([,;:!?]+)/,'\1 \2')     # punctation
     bar
   end
+  
+  def basename
+    self.split("/").last
+  end
 end
 

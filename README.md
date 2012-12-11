@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-see: [lib/nlp_toolz.rb](lib/nlp_toolz.rb) and specs for usage
+see: [nlp_toolz/lib/nlp_toolz.rb](lib/nlp_toolz.rb) and specs for usage
 
 ## Contributing
 
