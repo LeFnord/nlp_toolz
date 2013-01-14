@@ -4,9 +4,7 @@
 # @date:   2012-10-23
 
 # for java usage
-# require "java"
 require "rjb"
-# require "rjbextension"
 
 # external requirements
 require "awesome_print"
@@ -17,6 +15,7 @@ require "nlp_toolz/version"
 require "nlp_toolz/helpers/url_handler"
 require "nlp_toolz/helpers/lang"
 require "nlp_toolz/helpers/string_extended"
+require "nlp_toolz/helpers/tmp_file"
 
 # NLP Tools
 require "nlp_toolz/load_jars"
