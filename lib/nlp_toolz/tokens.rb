@@ -41,5 +41,5 @@ module NlpToolz
       end
     end
     
-  end
-end
+  end # Class Tokens
+end # module NlpToolz

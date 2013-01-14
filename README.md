@@ -1,6 +1,7 @@
 # NlpToolz
 
 Basic NLP tools, mostly based on OpenNLP, at this time `sentence finder`, `tokenizer` and `POS tagger` implemented.
+Plus Berkeley Parser.
 
 ## Installation
 

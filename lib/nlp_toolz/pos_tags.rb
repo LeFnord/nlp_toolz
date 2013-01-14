@@ -19,7 +19,7 @@ module NlpToolz
       @input = input
       @lang = lang || get_language
       @model_name = "#{@lang}-pos-maxent.bin"
-      @tokenized = {tokens: @input.tokenize}
+      @tokenized = {tokens: @input.clean_up}
       get_model
     end
     

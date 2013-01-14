@@ -35,7 +35,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "rjb"
   gem.add_runtime_dependency "multi_json"
-  
+  # gem.add_runtime_dependency "birch"
   gem.add_runtime_dependency "gli"
   
 end
