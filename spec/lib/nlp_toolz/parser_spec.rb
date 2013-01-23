@@ -60,11 +60,11 @@ describe NlpToolz do
     end
 
     describe "parsing" do
-      # it "should store tree in a hash" do
-      #   text = NlpToolz::Parser.new(@text)
-      #   text.parse_text
-      #   text.hash.should be_a(Hash)
-      # end
+      it "should store tree in a hash" do
+        text = NlpToolz::Parser.new(@text)
+        text.parse_text
+        text.hash.should be_a(Hash)
+      end
 
       it "should have a token hash after parsing" do
         text = NlpToolz::Parser.new(@text)
@@ -73,6 +73,21 @@ describe NlpToolz do
         text.layer.should include(:tags)
         text.layer.should include(:tokens)
       end
+
+      # it "should be the same, 'layer = 0' and /wo arg " do
+      #   text_1 = NlpToolz::Parser.new(@text)
+      #   text_1.parse_text
+      #   text_2 = NlpToolz::Parser.new(@text)
+      #   text_2.parse_text
+      #   text_1.layer.should eql(text_2.layer(0))
+      #   ap text_1.layer
+      # end
+
+      # it "should get layers of different levels" do
+      #   text = NlpToolz::Parser.new(@text)
+      #   text.parse_text
+      #   text.layer(1).should be_a Hash
+      # end
     end
   end # Parser
 end # NlpToolz

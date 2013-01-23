@@ -25,9 +25,15 @@ require "nlp_toolz/tokens"
 require "nlp_toolz/parser"
 
 module NlpToolz
+  extend Lang
+
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
   JARS = File.join(File.dirname(__FILE__), '..', "jars")
   
+  def self.get_lang(input)
+    NlpToolz.get_language(input)
+  end
+
   def self.get_sentences(input,lang = nil)
     text = NlpToolz::Sentences.new(input,lang)
     text.split_into_sentences if text.has_model?
