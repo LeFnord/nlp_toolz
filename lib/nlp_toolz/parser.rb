@@ -17,7 +17,6 @@ module NlpToolz
       @input = input
       @lang = lang || get_language
       @model_name = "#{@lang}-sm5.gr"
-      @tokens = @input.clean_up
       get_model
     end
     
@@ -25,7 +24,7 @@ module NlpToolz
       parsed = nil
       if self.has_model?
         jar = "#{JARS}/BerkeleyParser-1.7.jar"
-        in_file = make_tmp_file_from @tokens
+        in_file = make_tmp_file_from @input.clean_up
         out_file = make_tmp_file_from
         `java -Xmx4g -jar #{jar} -gr #{@model} -inputFile #{in_file.path} -outputFile #{out_file.path} -tokenize -maxLength 500`.chomp
         @parsed = File.open(out_file).gets(nil).chomp
@@ -97,7 +96,7 @@ module NlpToolz
           @first_layer[:tokens] << token
 
           leaf = Leaf.new(tag.to_sym,token)
-          # leaf = Leaf.new(part.gsub("{","").to_sym,parsed[i+1].gsub("}",""))
+
           if foo[foo.length-1].is_a?(Hash)
             foo[foo.length-1] = [foo[foo.length-1], leaf]
           elsif foo[foo.length-1].is_a?(Array)
