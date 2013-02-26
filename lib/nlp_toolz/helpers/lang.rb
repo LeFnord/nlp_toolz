@@ -13,12 +13,11 @@ module Lang
     response["lang"]
   end
   
+  # ToDo 2013-02-26: make different lang identifier available
   def alternative_langs lang
     langs = {
       en: [:eng, :english],
       de: [:ger, :german]
     }.each.collect{|x| x.flatten}
-    
-    # ap langs
   end
 end
