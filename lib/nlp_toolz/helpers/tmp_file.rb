@@ -1,3 +1,5 @@
+require 'tempfile'
+
 module TmpFile
   module_function
   
