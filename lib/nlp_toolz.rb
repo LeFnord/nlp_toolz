@@ -52,4 +52,20 @@ module NlpToolz
     
     tagged_text
   end
+  
+  def self.parse_sentence(input,lang = nil)
+    text = NlpToolz::Parser.new(input,lang)
+    text.parse_text
+    
+    text.parse_hash
+  end
+  
+  def self.parse_text(input,lang = nil)
+    parsed_text = []
+    get_sentences(input,lang).each do |sentence|
+      parsed_text << parse_sentence(sentence)
+    end
+    
+    parsed_text
+  end
 end
