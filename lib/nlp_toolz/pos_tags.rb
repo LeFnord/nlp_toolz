@@ -9,7 +9,7 @@ module NlpToolz
     include Lang
     
     # load java classes
-    FileInputStream    = Rjb::import('java.io.FileInputStream')
+    FileInputStream = Rjb::import('java.io.FileInputStream')
     POSModel = Rjb::import('opennlp.tools.postag.POSModel')
     POSTaggerME = Rjb::import('opennlp.tools.postag.POSTaggerME')
     

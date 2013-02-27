@@ -28,3 +28,4 @@ tmtags
 
 tmtagsHistory
 .DS_Store
+lib/nlp_toolz/load_jars.rb
