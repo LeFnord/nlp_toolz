@@ -7,6 +7,7 @@ module NlpToolz
   class Parser
     include Lang
     include TmpFile
+
     # load java classes
     FileInputStream    = Rjb::import('java.io.FileInputStream')
     

@@ -9,6 +9,7 @@ require "rjb"
 # external requirements
 require "awesome_print"
 require "multi_json"
+require "celluloid"
 
 # internal requirements
 require "nlp_toolz/version"
@@ -18,7 +19,7 @@ require "nlp_toolz/helpers/string_extended"
 require "nlp_toolz/helpers/tmp_file"
 
 # NLP Tools
-require "nlp_toolz/load_jars"
+# require "nlp_toolz/load_jars"
 require "nlp_toolz/sentences"
 require "nlp_toolz/pos_tags"
 require "nlp_toolz/tokens"
@@ -26,9 +27,13 @@ require "nlp_toolz/parser"
 
 module NlpToolz
   extend Lang
+  include Celluloid
 
+  Rjb::load(nil,['-Djava.awt.headless=true'])
+  
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
   JARS = File.join(File.dirname(__FILE__), '..', "jars")
+  
   
   def self.get_lang(input)
     NlpToolz.get_language(input)
@@ -47,7 +52,7 @@ module NlpToolz
   def self.tag_text(input,lang = nil)
     tagged_text = []
     get_sentences(input,lang).each do |sentence|
-      tagged_text << tag_sentence(sentence)
+      tagged_text << tag_sentence(sentence,lang)
     end
     
     tagged_text
@@ -63,7 +68,7 @@ module NlpToolz
   def self.parse_text(input,lang = nil)
     parsed_text = []
     get_sentences(input,lang).each do |sentence|
-      parsed_text << parse_sentence(sentence)
+      parsed_text << parse_sentence(sentence,lang)
     end
     
     parsed_text
