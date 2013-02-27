@@ -19,7 +19,7 @@ require "nlp_toolz/helpers/string_extended"
 require "nlp_toolz/helpers/tmp_file"
 
 # NLP Tools
-# require "nlp_toolz/load_jars"
+require "nlp_toolz/load_jars"
 require "nlp_toolz/sentences"
 require "nlp_toolz/pos_tags"
 require "nlp_toolz/tokens"
@@ -28,12 +28,17 @@ require "nlp_toolz/parser"
 module NlpToolz
   extend Lang
   include Celluloid
-
-  Rjb::load(nil,['-Djava.awt.headless=true'])
   
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
   JARS = File.join(File.dirname(__FILE__), '..', "jars")
   
+  CLASS_PATH = [
+                 File.join(JARS, "jars/jwnl-1.3.3.jar"),
+                 File.join(JARS, "jars/opennlp-tools-1.5.2.jar"),
+                 File.join(JARS, "jars/opennlp-maxent-3.0.2.jar")
+               ].join(":")
+  
+  Rjb::load(CLASS_PATH,['-Xmx2048m','-Djava.awt.headless=true'])
   
   def self.get_lang(input)
     NlpToolz.get_language(input)
