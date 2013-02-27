@@ -19,7 +19,7 @@ require "nlp_toolz/helpers/string_extended"
 require "nlp_toolz/helpers/tmp_file"
 
 # NLP Tools
-require "nlp_toolz/load_jars"
+# require "nlp_toolz/load_jars"
 require "nlp_toolz/sentences"
 require "nlp_toolz/pos_tags"
 require "nlp_toolz/tokens"
