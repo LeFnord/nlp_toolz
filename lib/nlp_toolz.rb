@@ -36,6 +36,11 @@ module NlpToolz
     NlpToolz.get_language(input)
   end
   
+  def self.get_sentences(input,lang = nil)
+    text = NlpToolz::Sentences.new(input,lang)
+    text.split_into_sentences if text.has_model?
+  end
+  
   def self.tokenize_sentence(input,lang = nil)
     sentence = NlpToolz::Tokens.new(input,lang)
     sentence.tokenize
@@ -50,11 +55,6 @@ module NlpToolz
     tokenized_text
   end
 
-  def self.get_sentences(input,lang = nil)
-    text = NlpToolz::Sentences.new(input,lang)
-    text.split_into_sentences if text.has_model?
-  end
-  
   def self.tag_sentence(input,lang = nil)
     sentence = NlpToolz::PosTags.new(input,lang)
     sentence.get_pos_tags if sentence.has_model?
