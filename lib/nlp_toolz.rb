@@ -35,6 +35,20 @@ module NlpToolz
   def self.get_lang(input)
     NlpToolz.get_language(input)
   end
+  
+  def self.tokenize_sentence(input,lang = nil)
+    sentence = NlpToolz::Tokens.new(input,lang)
+    sentence.tokenize
+  end
+  
+  def self.tokenize_text(input,lang = nil)
+    tokenized_text = []
+    get_sentences(input,lang).each do |sentence|
+      tokenized_text << tokenize_sentence(sentence,lang)
+    end
+    
+    tokenized_text
+  end
 
   def self.get_sentences(input,lang = nil)
     text = NlpToolz::Sentences.new(input,lang)
