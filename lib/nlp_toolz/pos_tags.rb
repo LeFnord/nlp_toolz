@@ -19,14 +19,21 @@ module NlpToolz
       @input = input
       @lang = lang || get_language
       @model_name = "#{@lang}-pos-maxent.bin"
-      @tokenized = {tokens: @input.clean_up}
       get_model
     end
     
     def get_pos_tags
       if self.has_model?
-        @tokenized = tokenize_it @tagger.tag(@tokenized[:tokens])
+        @tokenized = tokenize_it @tagger.tag(@input.clean_up)
       end
+    end
+    
+    def tokens
+      @tokenized[:token]
+    end
+    
+    def tags
+      @tokenized[:tag]
     end
     
     def has_model?
@@ -47,16 +54,16 @@ module NlpToolz
     
     # ToDo 2012-11-28: only a workaround upto the opennlp tokenizer is implemented
     def tokenize_it stream
-      foo = {token: [], tag: []}
+      foo = {tokens: [], tags: []}
       stream.split.each do |token|
         splitter = token.split("/")
         if splitter.length == 2
-          foo[:token] << splitter.first
-          foo[:tag] << splitter.last
+          foo[:tokens] << splitter.first
+          foo[:tags] << splitter.last
         else
           splitter[0..-2].each do |splits|
-            foo[:token] << splits
-            foo[:tag] << splitter.last
+            foo[:tokens] << splits
+            foo[:tags] << splitter.last
           end
         end
       end
