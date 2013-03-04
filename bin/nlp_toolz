@@ -18,6 +18,20 @@ def get_out(this)
   $stdout.puts this unless $stdout.tty?
 end
 
+def get_in(input_arg)
+  if File.exists?(input_arg) && !File.directory?(input_arg)
+    return get_file(input_arg)
+  else
+    return input_arg
+  end
+end
+
+def get_file(name)
+  file = File.open(name).gets(nil)
+  "" if file.nil?
+  file.force_encoding("utf-8") unless file.nil?
+end
+
 
 program_desc 'running basic NLP tasks'
 
@@ -26,65 +40,52 @@ version NlpToolz::VERSION
 desc 'sentence detection'
 arg_name 'Describe arguments to sent here'
 command :sent do |c|
-  # c.desc 'file input'
-  # c.arg_name '<path/to/file>'
-  # c.flag [:f,:file]
+  c.desc 'file input'
+  c.arg_name '<path/to/file>'
+  c.flag [:f,:file]
   c.action do |global_options,options,args|
-    get_out NlpToolz.get_sentences(args.first)
+    input = get_in(options[:f] || args.first)
+    get_out NlpToolz.get_sentences(input)
   end
 end
 
 desc 'parsing text'
 arg_name 'Describe arguments to parse here'
 command :parse do |c|
-  # c.desc 'file input'
-  # c.arg_name '<path/to/file>'
-  # c.flag [:f,:file]
+  c.desc 'file input'
+  c.arg_name '<path/to/file>'
+  c.flag [:f,:file]
   c.action do |global_options,options,args|
-    get_out NlpToolz.parse_text(args.first)
+    input = get_in(options[:f] || args.first)
+    get_out NlpToolz.parse_text(input)
   end
 end
 
 desc 'pos tagging of text'
 arg_name 'Describe arguments to tag here'
 command :tag do |c|
-  # c.desc 'file input'
-  # c.arg_name '<path/to/file>'
-  # c.flag [:f,:file]
+  c.desc 'file input'
+  c.arg_name '<path/to/file>'
+  c.flag [:f,:file]
   c.action do |global_options,options,args|
-    get_out NlpToolz.tag_text(args.first)
+    input = get_in(options[:f] || args.first)
+    get_out NlpToolz.tag_text(input)
   end
 end
 
 desc 'tokenizing text'
 arg_name 'Describe arguments to token here'
 command :token do |c|
-  # c.desc 'file input'
-  # c.arg_name '<path/to/file>'
-  # c.flag [:f,:file]
+  c.desc 'file input'
+  c.arg_name '<path/to/file>'
+  c.flag [:f,:file]
   c.action do |global_options,options,args|
-    get_out NlpToolz.tokenize_text(args.first)
+    input = get_in(options[:f] || args.first)
+    get_out NlpToolz.tokenize_text(input)
   end
 end
 
-pre do |global,command,options,args|
-  # Pre logic here
-  # Return true to proceed; false to abort and not call the
-  # chosen command
-  # Use skips_pre before a command to skip this block
-  # on that command only
-  true
-end
-
-post do |global,command,options,args|
-  # Post logic here
-  # Use skips_post before a command to skip this
-  # block on that command only
-end
-
 on_error do |exception|
-  # Error logic here
-  # return false to skip default error handling
   true
 end
 
