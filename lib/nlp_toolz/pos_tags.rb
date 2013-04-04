@@ -29,11 +29,11 @@ module NlpToolz
     end
     
     def tokens
-      @tokenized[:token]
+      @tokenized[:tokens]
     end
     
     def tags
-      @tokenized[:tag]
+      @tokenized[:tags]
     end
     
     def has_model?
