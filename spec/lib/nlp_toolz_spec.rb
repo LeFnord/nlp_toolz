@@ -46,7 +46,7 @@ describe NlpToolz do
     it "should tag a sentence" do
       sentence = NlpToolz.get_sentences(@sentence).last
       tags = NlpToolz.tag_sentence(sentence)
-      tags[:token].length.should == tags[:tag].length
+      tags[:tokens].length.should == tags[:tags].length
     end
     
     it "should be 'nil', if sentence language not supported " do
@@ -55,17 +55,11 @@ describe NlpToolz do
     end
     
     it "should tag a whole text" do
-      tagged_sentences = NlpToolz.tag_text(@part_text)
-      tagged_sentences.should have(52).items
-      tagged_sentences.should be_a Array
-      tagged_sentences.first.should be_a Hash
-      tagged_sentences.first[:token].length.should == tagged_sentences.first[:tag].length
-    end
-    
-    it "should tag a whole text /wo splitting into sentences" do
-      tagged_sentences = NlpToolz.tag_sentence(@text)
-      tagged_sentences.should be_a Hash
-      tagged_sentences[:token].length.should == tagged_sentences[:tag].length
+      tagged_text = NlpToolz.tag_text(@part_text)
+      tagged_text.should have(52).items
+      tagged_text.should be_a Array
+      tagged_text.first.should be_a Hash
+      tagged_text.first[:tokens].length.should == tagged_text.first[:tags].length
     end
   end
   

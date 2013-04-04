@@ -1,4 +1,4 @@
-# coding: utf-8
+# coding:  utf-8
 # @author: LeFnord
 # @email:  pscholz.le@gmail.com
 # @date:   2012-10-23
@@ -27,21 +27,23 @@ require "nlp_toolz/parser"
 
 module NlpToolz
   extend Lang
-  include Celluloid
   
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
   JARS = File.join(File.dirname(__FILE__), '..', "jars")
   
   def self.get_lang(input)
+    include Celluloid
     NlpToolz.get_language(input)
   end
   
   def self.get_sentences(input,lang = nil)
+    include Celluloid
     text = NlpToolz::Sentences.new(input,lang)
     text.split_into_sentences if text.has_model?
   end
   
   def self.tokenize_sentence(input,lang = nil)
+    include Celluloid
     sentence = NlpToolz::Tokens.new(input,lang)
     sentence.tokenize
   end
@@ -56,6 +58,7 @@ module NlpToolz
   end
 
   def self.tag_sentence(input,lang = nil)
+    include Celluloid
     sentence = NlpToolz::PosTags.new(input,lang)
     sentence.get_pos_tags if sentence.has_model?
   end
@@ -70,6 +73,7 @@ module NlpToolz
   end
   
   def self.parse_sentence(input,lang = nil)
+    include Celluloid
     text = NlpToolz::Parser.new(input,lang)
     text.parse_text
     
