@@ -6,6 +6,7 @@
 # ToDo 2012-10-24: add train capabilities
 module NlpToolz
   class PosTags
+    include Celluloid
     include Lang
     
     # load java classes
