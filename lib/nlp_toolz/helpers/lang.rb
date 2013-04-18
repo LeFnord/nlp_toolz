@@ -1,4 +1,5 @@
 module Lang
+  include Celluloid
   include UrlHandler
   # get language of input
   def get_language(text = nil)

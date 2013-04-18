@@ -5,6 +5,7 @@
 
 module NlpToolz
   class Tokens
+    include Celluloid
     include Lang
     
     # load java classes

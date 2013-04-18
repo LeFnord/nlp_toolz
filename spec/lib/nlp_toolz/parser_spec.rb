@@ -57,7 +57,7 @@ describe NlpToolz do
       it "should store tree in a hash" do
         text = NlpToolz::Parser.new(@text)
         text.parse_text
-        text.hash.should be_a(Hash)
+        text.parse_hash.should be_a(Hash)
       end
 
       it "should have a token hash after parsing" do

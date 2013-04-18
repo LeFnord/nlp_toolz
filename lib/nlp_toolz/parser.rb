@@ -5,6 +5,7 @@
 
 module NlpToolz
   class Parser
+    include Celluloid
     include Lang
     include TmpFile
 

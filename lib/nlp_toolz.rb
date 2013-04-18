@@ -7,7 +7,7 @@
 require "rjb"
 
 # external requirements
-require "awesome_print"
+# require "awesome_print"
 require "multi_json"
 require "celluloid"
 

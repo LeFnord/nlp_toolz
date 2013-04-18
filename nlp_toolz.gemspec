@@ -37,6 +37,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "multi_json"
   # gem.add_runtime_dependency "birch"
   gem.add_runtime_dependency "gli"
+  gem.add_runtime_dependency "rake"
   gem.add_runtime_dependency "celluloid"
   
 end
