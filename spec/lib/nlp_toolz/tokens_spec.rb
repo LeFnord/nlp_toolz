@@ -5,7 +5,6 @@ describe NlpToolz do
   describe "Tokens" do
     before(:each) do
       @text = "Military historian Basil Liddell Hart famously declared that Sherman was the first modern general."
-      
       @g_text = "μακεδονικού εκκεντροφόρου πολιτισμός του. την ανάφλεξης πολιτισμική. πολιτισμού του να. τόπος επειδή σε. καθορίσουν χρόνια Στα από."
     end
     

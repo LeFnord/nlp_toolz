@@ -7,7 +7,7 @@
 require "rjb"
 
 # external requirements
-# require "awesome_print"
+require "awesome_print"
 require "multi_json"
 require "celluloid"
 
@@ -28,27 +28,26 @@ require "nlp_toolz/parser"
 module NlpToolz
   extend Lang
   
+  module_function
+  
   MODELS = File.join(File.dirname(__FILE__), '..', "models")
   JARS = File.join(File.dirname(__FILE__), '..', "jars")
   
-  def self.get_lang(input)
-    include Celluloid
+  def get_lang(input)
     NlpToolz.get_language(input)
   end
   
-  def self.get_sentences(input,lang = nil)
-    include Celluloid
+  def get_sentences(input,lang = nil)
     text = NlpToolz::Sentences.new(input,lang)
     text.split_into_sentences if text.has_model?
   end
   
-  def self.tokenize_sentence(input,lang = nil)
-    include Celluloid
+  def tokenize_sentence(input,lang = nil)
     sentence = NlpToolz::Tokens.new(input,lang)
     sentence.tokenize
   end
   
-  def self.tokenize_text(input,lang = nil)
+  def tokenize_text(input,lang = nil)
     tokenized_text = []
     get_sentences(input,lang).each do |sentence|
       tokenized_text << tokenize_sentence(sentence,lang)
@@ -57,13 +56,12 @@ module NlpToolz
     tokenized_text
   end
 
-  def self.tag_sentence(input,lang = nil)
-    include Celluloid
+  def tag_sentence(input,lang = nil)
     sentence = NlpToolz::PosTags.new(input,lang)
     sentence.get_pos_tags if sentence.has_model?
   end
   
-  def self.tag_text(input,lang = nil)
+  def tag_text(input,lang = nil)
     tagged_text = []
     get_sentences(input,lang).each do |sentence|
       tagged_text << tag_sentence(sentence,lang)
@@ -72,15 +70,14 @@ module NlpToolz
     tagged_text
   end
   
-  def self.parse_sentence(input,lang = nil)
-    include Celluloid
+  def parse_sentence(input,lang = nil)
     text = NlpToolz::Parser.new(input,lang)
     text.parse_text
     
     text.parse_hash
   end
   
-  def self.parse_text(input,lang = nil)
+  def parse_text(input,lang = nil)
     parsed_text = []
     get_sentences(input,lang).each do |sentence|
       parsed_text << parse_sentence(sentence,lang)
