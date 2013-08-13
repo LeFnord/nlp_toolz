@@ -20,12 +20,11 @@ tmp
 
 ToDo.task
 
-ToDo.task
-
 teste.rb
 
-tmtags
-
-tmtagsHistory
 .DS_Store
 test-data/
+jars/BerkeleyParser-1.7.jar
+jars/jwnl-1.3.3.jar
+jars/opennlp-maxent-3.0.3.jar
+jars/opennlp-tools-1.5.3.jar

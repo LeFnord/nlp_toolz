@@ -17,9 +17,11 @@ Or install it yourself as:
 
     $ gem install nlp_toolz
 
+Download [OpenNLP](http://opennlp.apache.org/cgi-bin/download.cgi) and move opennlp-tools-1.5.3.jar, *-maxent-3.0.3.jar and jwnl-1.3.3.jar into jar folder, also for [BerkeleyParser](http://code.google.com/p/berkeleyparser/downloads/list).
+
 ## Usage
 
-see: [nlp_toolz.rb](nlp_toolz/blob/master/lib/nlp_toolz.rb) and specs for usage
+see: [nlp_toolz.rb](https://github.com/LeFnord/nlp_toolz/blob/master/lib/nlp_toolz.rb) and specs for usage
 
 ## Contributing
 
