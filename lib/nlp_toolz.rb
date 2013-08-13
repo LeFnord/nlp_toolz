@@ -30,9 +30,6 @@ module NlpToolz
   
   module_function
   
-  MODELS = File.join(File.dirname(__FILE__), '..', "models")
-  JARS = File.join(File.dirname(__FILE__), '..', "jars")
-  
   def get_lang(input)
     NlpToolz.get_language(input)
   end
