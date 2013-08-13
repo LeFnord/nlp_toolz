@@ -4,5 +4,5 @@
 # @date:   2012-10-23
 
 module NlpToolz
-  VERSION = "0.3.1"
+  VERSION = "1.0.0"
 end
