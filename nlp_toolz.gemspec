@@ -12,9 +12,10 @@ Gem::Specification.new do |gem|
   gem.version       = NlpToolz::VERSION
   gem.authors       = ["LeFnord"]
   gem.email         = ["pscholz.le@gmail.com"]
-  gem.description   = %q{wrapper around the openNLP toolset}
+  gem.description   = %q{make NLP tolls available, from OpenNLP and BerkeleyParser}
   gem.summary       = %q{wrapper around the openNLP toolset}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/LeFnord/nlp_toolz"
+  gem.license       = "LICENSE.txt"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
