@@ -8,5 +8,8 @@ module NlpToolz
     File.join(JARS, "opennlp-maxent-3.0.3.jar")
   ].join(":")
   
-  Rjb::load(CLASS_PATH,['-Xmx2048m','-Djava.awt.headless=true'])
+  Rjb::load(CLASS_PATH,['-Xmx4096m','-Djava.awt.headless=true'])
+  # Rjb::load(CLASS_PATH,['-Xmx4096m','-XX:+UseParallelGC','-XX:+UseParallelOldGC','-Djava.awt.headless=true'])
+  # Rjb::load(CLASS_PATH,['-Xmx4096m','-XX:+UseConcMarkSweepGC','-Djava.awt.headless=true'])
+  # Rjb::load(CLASS_PATH,['-Xmx4096m','-XX:+UseSerialGC','-Djava.awt.headless=true'])
 end

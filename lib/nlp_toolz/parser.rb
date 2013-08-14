@@ -4,8 +4,9 @@
 # @date:   2012-12-10
 
 module NlpToolz
+
   class Parser
-    include Celluloid
+
     include Lang
     include TmpFile
 
@@ -139,5 +140,7 @@ module NlpToolz
         tmp[1]
       end
     end
+
   end # class Parser
+
 end # module NlpToolz

@@ -9,7 +9,6 @@ require "rjb"
 # external requirements
 require "awesome_print"
 require "multi_json"
-require "celluloid"
 
 # internal requirements
 require "nlp_toolz/version"
