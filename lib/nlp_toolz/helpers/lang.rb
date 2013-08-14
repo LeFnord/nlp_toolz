@@ -1,5 +1,5 @@
 module Lang
-  include Celluloid
+
   include UrlHandler
   # get language of input
   def get_language(text = nil)
@@ -32,4 +32,5 @@ module Lang
       de: [:ger, :german]
     }.each.collect{|x| x.flatten}
   end
+
 end

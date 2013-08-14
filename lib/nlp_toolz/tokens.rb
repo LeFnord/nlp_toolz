@@ -4,8 +4,9 @@
 # @date:   2012-11-30
 
 module NlpToolz
+
   class Tokens
-    include Celluloid
+    
     include Lang
     
     # load java classes
@@ -43,4 +44,5 @@ module NlpToolz
     end
     
   end # Class Tokens
+  
 end # module NlpToolz

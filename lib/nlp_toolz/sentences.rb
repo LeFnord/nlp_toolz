@@ -5,8 +5,9 @@
 
 # ToDo 2012-10-24: add train capabilities
 module NlpToolz
+
   class Sentences
-    include Celluloid
+    
     include Lang
     
     # load java classes
@@ -45,4 +46,5 @@ module NlpToolz
     end
     
   end # class Sentences
+
 end # module NlpToolz
