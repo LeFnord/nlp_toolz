@@ -13,3 +13,10 @@ module NlpToolz
   # Rjb::load(CLASS_PATH,['-Xmx4096m','-XX:+UseConcMarkSweepGC','-Djava.awt.headless=true'])
   # Rjb::load(CLASS_PATH,['-Xmx4096m','-XX:+UseSerialGC','-Djava.awt.headless=true'])
 end
+
+# simple example benchmarks, pos tagging 862 pharses:
+# /wo extra options  -> 656s
+# /w ParallelGC      -> 657s
+# /w ConcMarkSweepGC -> 659s
+# /w SerialGC        -> 668s
+# see: [Java GC tuning](http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html)

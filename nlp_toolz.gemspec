@@ -12,10 +12,10 @@ Gem::Specification.new do |gem|
   gem.version       = NlpToolz::VERSION
   gem.authors       = ["LeFnord"]
   gem.email         = ["pscholz.le@gmail.com"]
-  gem.description   = %q{make NLP tolls available, from OpenNLP and BerkeleyParser}
+  gem.description   = %q{make NLP tools available, from OpenNLP and BerkeleyParser}
   gem.summary       = %q{wrapper around the openNLP toolset}
   gem.homepage      = "https://github.com/LeFnord/nlp_toolz"
-  gem.license       = "LICENSE.txt"
+  gem.license       = ["MIT"]
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
@@ -36,9 +36,6 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "rjb"
   gem.add_runtime_dependency "multi_json"
-  # gem.add_runtime_dependency "birch"
   gem.add_runtime_dependency "gli"
   gem.add_runtime_dependency "rake"
-  gem.add_runtime_dependency "celluloid"
-  
 end
