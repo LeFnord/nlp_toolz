@@ -15,8 +15,9 @@ Gem::Specification.new do |gem|
   gem.description   = %q{make NLP tools available, from OpenNLP and BerkeleyParser}
   gem.summary       = %q{wrapper around the openNLP toolset}
   gem.homepage      = "https://github.com/LeFnord/nlp_toolz"
-  gem.license       = ["MIT"]
-
+  gem.license       = "MIT"
+  
+  gem.required_ruby_version = '>= 2.0.0'
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
