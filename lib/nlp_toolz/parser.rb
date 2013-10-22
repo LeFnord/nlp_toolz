@@ -1,7 +1,7 @@
 # coding:  utf-8
-# @author: LeFnord
-# @email:  pscholz.le@gmail.com
-# @date:   2012-12-10
+# author: LeFnord
+# email:  pscholz.le@gmail.com
+# date:   2012-12-10
 
 module NlpToolz
 
@@ -11,7 +11,7 @@ module NlpToolz
     include TmpFile
 
     # load java classes
-    FileInputStream    = Rjb::import('java.io.FileInputStream')
+    FileInputStream = Rjb::import('java.io.FileInputStream')
     
     attr_reader :parsed
     attr_accessor :input, :lang, :model, :model_name, :parse_hash

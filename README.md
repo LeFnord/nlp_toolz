@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/nlp_toolz.png)](http://badge.fury.io/rb/nlp_toolz)
+
 # NlpToolz
 
 Basic NLP tools, mostly based on [OpenNLP](http://opennlp.apache.org), at this time `sentence finder`, `tokenizer` and `POS tagger` implemented, plus [Berkeley Parser](http://code.google.com/p/berkeleyparser/).

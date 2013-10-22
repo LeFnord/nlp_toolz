@@ -1,6 +1,7 @@
 # coding: utf-8
 
 class String
+  
   # ToDo: check abbr against list of ..
   def clean_up
     foo = self.encode('UTF-8', :invalid => :replace, :undef => :replace)
@@ -16,5 +17,5 @@ class String
   def basename
     self.split("/").last
   end
-end
 
+end

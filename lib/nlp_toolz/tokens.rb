@@ -1,7 +1,7 @@
 # coding:  utf-8
-# @author: LeFnord
-# @email:  pscholz.le@gmail.com
-# @date:   2012-11-30
+# author: LeFnord
+# email:  pscholz.le@gmail.com
+# date:   2012-11-30
 
 module NlpToolz
 
@@ -10,9 +10,9 @@ module NlpToolz
     include Lang
     
     # load java classes
-    FileInputStream    = Rjb::import('java.io.FileInputStream')
-    TokenizerModel = Rjb::import('opennlp.tools.tokenize.TokenizerModel')
-    TokenizerME = Rjb::import('opennlp.tools.tokenize.TokenizerME')
+    FileInputStream = Rjb::import('java.io.FileInputStream')
+    TokenizerModel  = Rjb::import('opennlp.tools.tokenize.TokenizerModel')
+    TokenizerME     = Rjb::import('opennlp.tools.tokenize.TokenizerME')
     
     attr_accessor :input, :lang, :model, :model_name, :tokens
     
