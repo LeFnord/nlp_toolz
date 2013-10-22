@@ -1,7 +1,7 @@
 # coding: utf-8
-# @author: LeFnord
-# @email:  pscholz.le@gmail.com
-# @date:   2012-10-24
+# author: LeFnord
+# email:  pscholz.le@gmail.com
+# date:   2012-10-24
 
 # ToDo 2012-10-24: add train capabilities
 module NlpToolz

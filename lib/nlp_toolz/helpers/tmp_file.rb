@@ -1,6 +1,7 @@
 require 'tempfile'
 
 module TmpFile
+
   module_function
   
   def make_tmp_file_from text = nil

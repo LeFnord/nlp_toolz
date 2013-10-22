@@ -1,7 +1,7 @@
 # coding:  utf-8
-# @author: LeFnord
-# @email:  pscholz.le@gmail.com
-# @date:   2012-10-23
+# author: LeFnord
+# email:  pscholz.le@gmail.com
+# date:   2012-10-23
 
 # for java usage
 require "rjb"

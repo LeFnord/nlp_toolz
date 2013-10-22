@@ -2,10 +2,9 @@ require 'uri'
 require 'net/http'
 
 module UrlHandler
-  module ClassMethods
-  end
+
+  module_function
   
-  # instance methods
   def build_url(host, port, path, query)
     return URI::HTTP.build({:host => host, :path => path, :query => query}) if port.nil?
     return URI::HTTP.build({:host => host, :port => port, :path => path, :query => query}) unless port.nil?
@@ -20,7 +19,4 @@ module UrlHandler
     uri_response
   end
   
-  def self.included(receiver)
-    receiver.extend ClassMethods
-  end
 end
