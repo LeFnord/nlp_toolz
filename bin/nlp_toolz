@@ -37,6 +37,13 @@ program_desc 'running basic NLP tasks'
 
 version NlpToolz::VERSION
 
+desc 'initial setup'
+command :init do |c|
+  c.action do |global_options,options,args|
+    puts 'setting up app'
+  end
+end
+
 desc 'sentence detection'
 arg_name '"text to split into sentences"'
 command :sent do |c|
