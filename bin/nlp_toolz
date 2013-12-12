@@ -38,7 +38,7 @@ program_desc 'running basic NLP tasks'
 version NlpToolz::VERSION
 
 desc 'sentence detection'
-arg_name 'Describe arguments to sent here'
+arg_name '"text to split into sentences"'
 command :sent do |c|
   c.desc 'file input'
   c.arg_name '<path/to/file>'
@@ -50,7 +50,7 @@ command :sent do |c|
 end
 
 desc 'parsing text'
-arg_name 'Describe arguments to parse here'
+arg_name '"text to parse"'
 command :parse do |c|
   c.desc 'file input'
   c.arg_name '<path/to/file>'
@@ -62,7 +62,7 @@ command :parse do |c|
 end
 
 desc 'pos tagging of text'
-arg_name 'Describe arguments to tag here'
+arg_name '"text to tag"'
 command :tag do |c|
   c.desc 'file input'
   c.arg_name '<path/to/file>'
@@ -74,7 +74,7 @@ command :tag do |c|
 end
 
 desc 'tokenizing text'
-arg_name 'Describe arguments to token here'
+arg_name '"text to tokenize"'
 command :token do |c|
   c.desc 'file input'
   c.arg_name '<path/to/file>'
