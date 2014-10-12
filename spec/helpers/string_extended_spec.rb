@@ -7,10 +7,10 @@ describe String do
   end
   
   it "should delete quotations marks" do
-    @a.join("").clean_up.should be_empty
+    expect(@a.join("").clean_up).to be_empty
     chars =  (@a.length - 1) * 3
-    @a.join(" ap").clean_up.length.should == chars
-    @a.join("ap ").clean_up.length.should == chars                      
+    expect(@a.join(" ap").clean_up.length).to be == chars
+    expect(@a.join("ap ").clean_up.length).to be == chars
   end
   
   

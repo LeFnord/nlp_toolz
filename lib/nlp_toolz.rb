@@ -28,7 +28,7 @@ module NlpToolz
   module_function
   
   def get_lang(input)
-    NlpToolz::Language.get_language_2(input)
+    NlpToolz::Language.get_language(input)
   end
   
   def get_sentences(input,lang = nil)

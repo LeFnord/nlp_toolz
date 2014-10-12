@@ -19,7 +19,7 @@ module NlpToolz
     RequestException = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.RequestException")
     Response = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.Response")
     
-    def self.get_language_2(text = nil)
+    def self.get_language(text = nil)
       return -1 if text.nil? || text.empty?
       lang_probability = identify text
       lang_probability.first

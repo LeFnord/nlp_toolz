@@ -8,16 +8,16 @@ describe 'Language' do
   end
   
   it 'do nothings if text empty or nil' do
-    res = NlpToolz::Language.get_language_2
+    res = NlpToolz::Language.get_language
     expect(res).to be == -1
-    res = NlpToolz::Language.get_language_2('')
+    res = NlpToolz::Language.get_language('')
     expect(res).to be == -1
   end
   
   it 'gets language' do
-    res = NlpToolz::Language.get_language_2 @en_text
+    res = NlpToolz::Language.get_language @en_text
     expect(res).to be == 'en'
-    res = NlpToolz::Language.get_language_2 @de_text
+    res = NlpToolz::Language.get_language @de_text
     expect(res).to be == 'de'
   end
 end

@@ -17,7 +17,7 @@ module NlpToolz
     
     def initialize(input, lang = nil)
       @input = input
-      @lang = lang || NlpToolz::Language.get_language_2(input)
+      @lang = lang || NlpToolz::Language.get_language(input)
       @model_name = "#{@lang}-sm5.gr"
       get_model
     end
