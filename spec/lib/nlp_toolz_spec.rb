@@ -11,33 +11,33 @@ describe NlpToolz do
   describe "detect language" do
     it "should description" do
       lang = NlpToolz.get_lang(@text)
-      lang.should == 'en'
+      expect(lang).to be == 'en'
     end
   end
   
   describe "sentence detection" do
     it "should input text split into its sentences" do
       sentences = NlpToolz.get_sentences(@text)
-      sentences.should have(3).items
+      expect(sentences.length).to be == 3
     end
     
     it "should be 'nil', if text lang is unsupported" do
       sentences = NlpToolz.get_sentences(@g_text)
-      sentences.should be_nil
+      expect(sentences).to be_nil
     end
   end
   
   describe "tokenizing" do
     it "should tag a sentence" do
       tokens = NlpToolz.tokenize_sentence(@sentence)
-      tokens.should have(26).items
-      tokens.should be_a Array
+      expect(tokens.length).to be == 26
+      expect(tokens).to be_a Array
     end
     
     it "should tokenize a whole text" do
       token_arr = NlpToolz.tokenize_text(@text)
-      token_arr.should have(3).items
-      token_arr.first.should have(26).items
+      expect(token_arr.length).to be == 3
+      expect(token_arr.first.length).to be == 26
     end
   end
   
@@ -45,12 +45,12 @@ describe NlpToolz do
     it "should tag a sentence" do
       sentence = NlpToolz.get_sentences(@sentence).last
       tags = NlpToolz.tag_sentence(sentence)
-      tags[:tokens].length.should == tags[:tags].length
+      expect(tags[:tokens].length).to be == tags[:tags].length
     end
     
     it "should be 'nil', if sentence language not supported " do
       tags = NlpToolz.tag_sentence(@g_text)
-      tags.should be_nil
+      expect(tags).to be_nil
     end
   end
   
@@ -58,12 +58,12 @@ describe NlpToolz do
     it "should parse a sentence" do
       sentence = NlpToolz.get_sentences(@sentence).last
       parsed = NlpToolz.parse_sentence(sentence)
-      parsed.should be_a Hash
+      expect(parsed).to be_a Hash
     end
-    
+
     it "should should be 'nil', if sentence language is not supported" do
       parsed = NlpToolz.parse_sentence(@g_text)
-      parsed.should be_nil
+      expect(parsed).to be_nil
     end
   end
 end

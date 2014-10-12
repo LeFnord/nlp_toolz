@@ -13,24 +13,22 @@ require "multi_json"
 # internal requirements
 require "nlp_toolz/version"
 require "nlp_toolz/helpers/url_handler"
-require "nlp_toolz/helpers/lang"
 require "nlp_toolz/helpers/string_extended"
 require "nlp_toolz/helpers/tmp_file"
 
 # NLP Tools
 require "nlp_toolz/load_jars"
+require "nlp_toolz/language"
 require "nlp_toolz/sentences"
 require "nlp_toolz/pos_tags"
 require "nlp_toolz/tokens"
 require "nlp_toolz/parser"
 
 module NlpToolz
-  extend Lang
-  
   module_function
   
   def get_lang(input)
-    NlpToolz.get_language(input)
+    NlpToolz::Language.get_language_2(input)
   end
   
   def get_sentences(input,lang = nil)

@@ -7,8 +7,6 @@ module NlpToolz
 
   class Tokens
     
-    include Lang
-    
     # load java classes
     FileInputStream = Rjb::import('java.io.FileInputStream')
     TokenizerModel  = Rjb::import('opennlp.tools.tokenize.TokenizerModel')
@@ -18,7 +16,7 @@ module NlpToolz
     
     def initialize(input, lang = nil)
       @input = input
-      @lang = lang || get_language
+      @lang = lang || NlpToolz::Language.get_language_2(input)
       @model_name = "#{@lang}-token.bin"
       get_model
     end

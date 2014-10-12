@@ -4,12 +4,11 @@
 # date:   2012-12-10
 
 module NlpToolz
-
+  
   class Parser
-
-    include Lang
+    
     include TmpFile
-
+    
     # load java classes
     FileInputStream = Rjb::import('java.io.FileInputStream')
     
@@ -18,7 +17,7 @@ module NlpToolz
     
     def initialize(input, lang = nil)
       @input = input
-      @lang = lang || get_language
+      @lang = lang || NlpToolz::Language.get_language_2(input)
       @model_name = "#{@lang}-sm5.gr"
       get_model
     end

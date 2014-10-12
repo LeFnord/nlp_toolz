@@ -8,8 +8,6 @@ module NlpToolz
 
   class PosTags
     
-    include Lang
-    
     # load java classes
     FileInputStream = Rjb::import('java.io.FileInputStream')
     POSModel        = Rjb::import('opennlp.tools.postag.POSModel')
@@ -19,7 +17,7 @@ module NlpToolz
     
     def initialize(input, lang = nil)
       @input = input
-      @lang = lang || get_language
+      @lang = lang || NlpToolz::Language.get_language_2(input)
       @model_name = "#{@lang}-pos-maxent.bin"
       get_model
     end
