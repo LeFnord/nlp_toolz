@@ -14,8 +14,7 @@ include GLI::App
 
 # helper methods
 def get_out(this)
-  ap this if $stdout.tty?
-  $stdout.puts this unless $stdout.tty?
+  $stdout.puts this
 end
 
 def get_in(input_arg)
@@ -32,6 +31,23 @@ def get_file(name)
   file.force_encoding("utf-8") unless file.nil?
 end
 
+def unzip_file (file, destination)
+  Zip::ZipFile.open(file) { |zip_file|
+   zip_file.each { |f|
+     f_path=File.join(destination, f.name)
+     FileUtils.mkdir_p(File.dirname(f_path))
+     zip_file.extract(f, f_path) unless File.exist?(f_path)
+   }
+  }
+end
+
+def add_path_in_lanikernel
+  file = IO.read(File.join(NlpToolz::HOME,'models','language','lanikernel.ini'))
+  file.sub!('WordlistDir=models',"WordlistDir=#{NlpToolz::HOME}/models")
+  file.sub!('BlacklistFile=models',"BlacklistFile=#{NlpToolz::HOME}/models")
+  file.sub!('MappingFile=models',"MappingFile=#{NlpToolz::HOME}/models")
+  File.open(File.join(NlpToolz::HOME,'models','language','lanikernel.ini'), 'w') {|f| f.write(file) }
+end
 
 program_desc 'running basic NLP tasks'
 
@@ -40,7 +56,34 @@ version NlpToolz::VERSION
 desc 'initial setup'
 command :init do |c|
   c.action do |global_options,options,args|
-    puts 'setting up app'
+    unless Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
+      gem_home = NlpToolz::HOME
+      $stdout.print "download and unzip to: ".green
+      $stdout.puts "#{gem_home}".blue
+      [
+        'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AACw8Y04KnFotOpBkzcfLxmwa/jars.zip',
+        'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AADUSMRMVg3n54Djdy9BWYVEa/models.zip',
+      ].each do |link|
+        loaded_file = link.split('/').last.sub('?dl=0','')
+        $stdout.print "download: ".green
+        $stdout.puts "#{loaded_file}".blue
+
+        Schiphol.download(
+          link,
+          # Default values
+          :download_folder => "#{gem_home}",
+          :show_progress => true,
+          :max_tries => 3
+        )
+        $stdout.puts "extracting …".green
+        unzip_file(File.join(gem_home,loaded_file),gem_home)
+        FileUtils.rm(File.join(gem_home,loaded_file))
+      end
+      $stdout.puts "add abbsolute path to language config".green
+      add_path_in_lanikernel
+    else
+      $stdout.puts "files exist".green
+    end
   end
 end
 
@@ -51,6 +94,7 @@ command :sent do |c|
   c.arg_name '<path/to/file>'
   c.flag [:f,:file]
   c.action do |global_options,options,args|
+    NlpToolz.check_dependencies
     input = get_in(options[:f] || args.first)
     get_out NlpToolz.get_sentences(input)
   end
@@ -63,6 +107,7 @@ command :parse do |c|
   c.arg_name '<path/to/file>'
   c.flag [:f,:file]
   c.action do |global_options,options,args|
+    NlpToolz.check_dependencies
     input = get_in(options[:f] || args.first)
     get_out NlpToolz.parse_text(input)
   end
@@ -75,6 +120,7 @@ command :tag do |c|
   c.arg_name '<path/to/file>'
   c.flag [:f,:file]
   c.action do |global_options,options,args|
+    NlpToolz.check_dependencies
     input = get_in(options[:f] || args.first)
     get_out NlpToolz.tag_text(input)
   end
@@ -87,6 +133,7 @@ command :token do |c|
   c.arg_name '<path/to/file>'
   c.flag [:f,:file]
   c.action do |global_options,options,args|
+    NlpToolz.check_dependencies
     input = get_in(options[:f] || args.first)
     get_out NlpToolz.tokenize_text(input)
   end

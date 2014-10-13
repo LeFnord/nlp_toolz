@@ -8,10 +8,12 @@ module NlpToolz
 
   class Sentences
     
+    if Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
     # load java classes
-    FileInputStream    = Rjb::import('java.io.FileInputStream')
-    SentenceDetectorME = Rjb::import('opennlp.tools.sentdetect.SentenceDetectorME')
-    SentenceModel      = Rjb::import('opennlp.tools.sentdetect.SentenceModel')
+      FileInputStream    = Rjb::import('java.io.FileInputStream')
+      SentenceDetectorME = Rjb::import('opennlp.tools.sentdetect.SentenceDetectorME')
+      SentenceModel      = Rjb::import('opennlp.tools.sentdetect.SentenceModel')
+    end
     
     attr_accessor :input, :lang, :model, :model_name, :sentences
     

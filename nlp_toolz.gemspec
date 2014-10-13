@@ -39,4 +39,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "multi_json"
   gem.add_runtime_dependency "gli"
   gem.add_runtime_dependency "rake"
+  
+  #for downloading models and jars
+  gem.add_runtime_dependency "schiphol"
+  gem.add_runtime_dependency "rubyzip"
 end

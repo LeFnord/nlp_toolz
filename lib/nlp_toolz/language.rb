@@ -7,17 +7,16 @@ module NlpToolz
   
   class Language
     
-    # load java classes
-    # Enumeration = Rjb::import("java.util.Enumeration")
-    HashSet     = Rjb::import("java.util.HashSet")
-    # Hashtable   = Rjb::import("java.util.Hashtable")
-    # Set         = Rjb::import("java.util.Set")
+    if Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
+      # load java classes
+      HashSet     = Rjb::import("java.util.HashSet")
     
-    DataSourceException = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.DataSourceException")
-    LanIKernel = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.LanIKernel")
-    Request = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.Request")
-    RequestException = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.RequestException")
-    Response = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.Response")
+      DataSourceException = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.DataSourceException")
+      LanIKernel = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.LanIKernel")
+      Request = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.Request")
+      RequestException = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.RequestException")
+      Response = Rjb::import("de.uni_leipzig.asv.toolbox.jLanI.kernel.Response")
+    end
     
     def self.get_language(text = nil)
       return -1 if text.nil? || text.empty?
@@ -33,7 +32,7 @@ module NlpToolz
       
       req = Request.new(text, languages, modus, reduce)
       
-      LanIKernel.propertyFile = File.join(MODELS, 'language', 'lanikernel')
+      LanIKernel.propertyFile = File.join(MODELS,'language','lanikernel')
       kernel = LanIKernel.getInstance()
       res = kernel.evaluate(req)
       

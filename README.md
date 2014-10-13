@@ -18,7 +18,9 @@ Or install it yourself as:
 
     $ gem install nlp_toolz
 
-Download jars and model files from [Dropbox](https://www.dropbox.com/sh/1layyjgf5h0wwi3/s2SHAnfVhs) and unzip it in gem folder.
+~~Download jars and model files from [Dropbox](https://www.dropbox.com/sh/1layyjgf5h0wwi3/s2SHAnfVhs) and unzip it in gem folder.~~
+
+Simplyfied installing `models` and `jars`, now run `nlp_toolz init` from command line.
 
 ## Usage
 

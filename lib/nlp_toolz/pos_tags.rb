@@ -8,10 +8,12 @@ module NlpToolz
 
   class PosTags
     
-    # load java classes
-    FileInputStream = Rjb::import('java.io.FileInputStream')
-    POSModel        = Rjb::import('opennlp.tools.postag.POSModel')
-    POSTaggerME     = Rjb::import('opennlp.tools.postag.POSTaggerME')
+    if Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
+      # load java classes
+      FileInputStream = Rjb::import('java.io.FileInputStream')
+      POSModel        = Rjb::import('opennlp.tools.postag.POSModel')
+      POSTaggerME     = Rjb::import('opennlp.tools.postag.POSTaggerME')
+    end
     
     attr_accessor :input, :lang, :model, :model_name, :tokenized
     

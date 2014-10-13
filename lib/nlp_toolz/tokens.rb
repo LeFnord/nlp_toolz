@@ -7,10 +7,12 @@ module NlpToolz
 
   class Tokens
     
-    # load java classes
-    FileInputStream = Rjb::import('java.io.FileInputStream')
-    TokenizerModel  = Rjb::import('opennlp.tools.tokenize.TokenizerModel')
-    TokenizerME     = Rjb::import('opennlp.tools.tokenize.TokenizerME')
+    if Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
+      # load java classes
+      FileInputStream = Rjb::import('java.io.FileInputStream')
+      TokenizerModel  = Rjb::import('opennlp.tools.tokenize.TokenizerModel')
+      TokenizerME     = Rjb::import('opennlp.tools.tokenize.TokenizerME')
+    end
     
     attr_accessor :input, :lang, :model, :model_name, :tokens
     
