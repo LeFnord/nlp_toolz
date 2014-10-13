@@ -4,5 +4,5 @@
 # date:   2012-10-23
 
 module NlpToolz
-  VERSION = "1.1.0"
+  VERSION = "1.1.1"
 end
