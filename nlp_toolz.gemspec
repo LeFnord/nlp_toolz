@@ -16,15 +16,15 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{wrapper around the openNLP toolset}
   gem.homepage      = "https://github.com/LeFnord/nlp_toolz"
   gem.license       = "MIT"
-  
-  gem.required_ruby_version = '>= 2.0.0'
+
+  gem.required_ruby_version = '~> 2.3'
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
   gem.add_development_dependency "rspec"
-  
+
   gem.add_development_dependency "guard"
   gem.add_development_dependency "rb-fsevent"
   gem.add_development_dependency "guard-rspec"
@@ -39,7 +39,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "multi_json"
   gem.add_runtime_dependency "gli"
   gem.add_runtime_dependency "rake"
-  
+
   #for downloading models and jars
   gem.add_runtime_dependency "schiphol"
   gem.add_runtime_dependency "rubyzip"

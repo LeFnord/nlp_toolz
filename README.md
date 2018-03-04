@@ -18,13 +18,14 @@ Or install it yourself as:
 
     $ gem install nlp_toolz
 
-~~Download jars and model files from [Dropbox](https://www.dropbox.com/sh/1layyjgf5h0wwi3/s2SHAnfVhs) and unzip it in gem folder.~~
-
-Simplyfied installing `models` and `jars`, now run `nlp_toolz init` from command line.
-
 ## Usage
 
 see: [nlp_toolz.rb](https://github.com/LeFnord/nlp_toolz/blob/master/lib/nlp_toolz.rb) and specs for usage
+
+## Docker
+
+- build: `docker build -t nlp_toolz_java_6 .`
+- run : `docker run --rm -ti nlp_toolz_java_6`
 
 ## Contributing
 
@@ -38,4 +39,3 @@ see: [nlp_toolz.rb](https://github.com/LeFnord/nlp_toolz/blob/master/lib/nlp_too
 
 - removed Celluloid, do concurrency in your app, where it be used
 - check `load_jars` for JVM parameters
-

@@ -9,9 +9,6 @@ require "rjb"
 # external requirements
 require "awesome_print"
 require "multi_json"
-# for downloading models and jars
-require "schiphol"
-require "zip/zip"
 
 # internal requirements
 require "nlp_toolz/version"
@@ -30,10 +27,10 @@ require "nlp_toolz/parser"
 
 
 module NlpToolz
-  
-  
+
+
   module_function
-  
+
   def check_dependencies
     unless Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
       $stdout.puts "\n--> models and jars not installed,"
@@ -42,7 +39,7 @@ module NlpToolz
       exit
     end
   end
-  
+
   def get_lang(input)
     NlpToolz::Language.get_language(input)
   end
@@ -62,7 +59,7 @@ module NlpToolz
     get_sentences(input,lang).each do |sentence|
       tokenized_text << tokenize_sentence(sentence,lang)
     end
-  
+
     tokenized_text
   end
 
@@ -76,14 +73,14 @@ module NlpToolz
     get_sentences(input,lang).each do |sentence|
       tagged_text << tag_sentence(sentence,lang)
     end
-  
+
     tagged_text
   end
 
   def parse_sentence(input,lang = nil)
     text = NlpToolz::Parser.new(input,lang)
     text.parse_text
-  
+
     text.parse_hash
   end
 
@@ -92,8 +89,8 @@ module NlpToolz
     get_sentences(input,lang).each do |sentence|
       parsed_text << parse_sentence(sentence,lang)
     end
-  
+
     parsed_text
   end
-  
+
 end

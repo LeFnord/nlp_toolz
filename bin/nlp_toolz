@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'gli'
-# begin # XXX: Remove this begin/rescue before distributing your app
+
+# for downloading models and jars
+# require "schiphol"
+# require "zip/zip"
+
 require 'nlp_toolz'
-# rescue LoadError
-#   STDERR.puts "In development, you need to use `bundle exec bin/nlp_toolz` to run your app"
-#   STDERR.puts "At install-time, RubyGems will make sure lib, etc. are in the load path"
-#   STDERR.puts "Feel free to remove this message from bin/NlpToolz now"
-#   exit 64
-# end
 
 include GLI::App
 
@@ -31,7 +31,7 @@ def get_file(name)
   file.force_encoding("utf-8") unless file.nil?
 end
 
-def unzip_file (file, destination)
+def unzip_file(file, destination)
   Zip::ZipFile.open(file) { |zip_file|
    zip_file.each { |f|
      f_path=File.join(destination, f.name)
@@ -53,39 +53,39 @@ program_desc 'running basic NLP tasks'
 
 version NlpToolz::VERSION
 
-desc 'initial setup'
-command :init do |c|
-  c.action do |global_options,options,args|
-    unless Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
-      gem_home = NlpToolz::HOME
-      $stdout.print "download and unzip to: ".green
-      $stdout.puts "#{gem_home}".blue
-      [
-        'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AACw8Y04KnFotOpBkzcfLxmwa/jars.zip',
-        'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AADUSMRMVg3n54Djdy9BWYVEa/models.zip',
-      ].each do |link|
-        loaded_file = link.split('/').last.sub('?dl=0','')
-        $stdout.print "download: ".green
-        $stdout.puts "#{loaded_file}".blue
-
-        Schiphol.download(
-          link,
-          # Default values
-          :download_folder => "#{gem_home}",
-          :show_progress => true,
-          :max_tries => 3
-        )
-        $stdout.puts "extracting …".green
-        unzip_file(File.join(gem_home,loaded_file),gem_home)
-        FileUtils.rm(File.join(gem_home,loaded_file))
-      end
-      $stdout.puts "add abbsolute path to language config".green
-      add_path_in_lanikernel
-    else
-      $stdout.puts "files exist".green
-    end
-  end
-end
+# desc 'initial setup'
+# command :init do |c|
+#   c.action do |global_options,options,args|
+#     unless Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
+#       gem_home = NlpToolz::HOME
+#       $stdout.print "download and unzip to: ".green
+#       $stdout.puts "#{gem_home}".blue
+#       [
+#         'https://www.dropbox.com/s/h0lstslb0ipdbvm/jars.zip?dl=0',
+#         'https://www.dropbox.com/s/maj2qeksq5l3apq/models.zip?dl=0'
+#       ].each do |link|
+#         loaded_file = link.split('/').last.sub('?dl=0','')
+#         $stdout.print "download: ".green
+#         $stdout.puts "#{loaded_file}".blue
+#
+#         Schiphol.download(
+#           link,
+#           # Default values
+#           :download_folder => "#{gem_home}",
+#           :show_progress => true,
+#           :max_tries => 3
+#         )
+#         $stdout.puts "extracting …".green
+#         unzip_file(File.join(gem_home,loaded_file),gem_home)
+#         FileUtils.rm(File.join(gem_home,loaded_file))
+#       end
+#       $stdout.puts "add abbsolute path to language config".green
+#       add_path_in_lanikernel
+#     else
+#       $stdout.puts "files exist".green
+#     end
+#   end
+# end
 
 desc 'sentence detection'
 arg_name '"text to split into sentences"'
