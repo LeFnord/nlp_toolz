@@ -48,19 +48,16 @@ RUN echo 'export RBENV_ROOT=/usr/local/rbenv' >> /root/.bashrc \
   &&  echo 'eval "$(rbenv init -)"' >> /root/.bashrc \
   &&  echo 'gem: --no-rdoc --no-ri"' >> /root/.gemrc
 
-ENV CONFIGURE_OPTS --disable-install-doc
 ENV PATH /usr/local/rbenv/bin:/usr/local/rbenv/shims:$PATH
 
 RUN eval "$(rbenv init -)"; rbenv install 2.3.6 \
   &&  eval "$(rbenv init -)"; rbenv global 2.3.6 \
-  &&  eval "$(rbenv init -)"; gem install bundler -f --no-rdoc --no-ri
+  &&  eval "$(rbenv init -)"; gem install bundler -f
 
 ADD . /root/app
 WORKDIR /root/app
 
 RUN eval "$(rbenv init -)"; bundle install
-
-RUN unzip jars.zip
-RUN unzip models.zip
+RUN eval "$(rbenv init -)"; bundle exec ./bin/nlp_toolz init
 
 CMD ["/bin/bash"]

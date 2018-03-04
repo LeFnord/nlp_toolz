@@ -10,6 +10,9 @@ require "rjb"
 require "awesome_print"
 require "multi_json"
 
+# for downloading models and jars
+require "zip/zip"
+
 # internal requirements
 require "nlp_toolz/version"
 require "nlp_toolz/helpers/url_handler"

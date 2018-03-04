@@ -53,39 +53,34 @@ program_desc 'running basic NLP tasks'
 
 version NlpToolz::VERSION
 
-# desc 'initial setup'
-# command :init do |c|
-#   c.action do |global_options,options,args|
-#     unless Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
-#       gem_home = NlpToolz::HOME
-#       $stdout.print "download and unzip to: ".green
-#       $stdout.puts "#{gem_home}".blue
-#       [
-#         'https://www.dropbox.com/s/h0lstslb0ipdbvm/jars.zip?dl=0',
-#         'https://www.dropbox.com/s/maj2qeksq5l3apq/models.zip?dl=0'
-#       ].each do |link|
-#         loaded_file = link.split('/').last.sub('?dl=0','')
-#         $stdout.print "download: ".green
-#         $stdout.puts "#{loaded_file}".blue
-#
-#         Schiphol.download(
-#           link,
-#           # Default values
-#           :download_folder => "#{gem_home}",
-#           :show_progress => true,
-#           :max_tries => 3
-#         )
-#         $stdout.puts "extracting …".green
-#         unzip_file(File.join(gem_home,loaded_file),gem_home)
-#         FileUtils.rm(File.join(gem_home,loaded_file))
-#       end
-#       $stdout.puts "add abbsolute path to language config".green
-#       add_path_in_lanikernel
-#     else
-#       $stdout.puts "files exist".green
-#     end
-#   end
-# end
+desc 'initial setup'
+command :init do |c|
+  c.action do |global_options,options,args|
+    unless Dir.exist?(File.join(NlpToolz::HOME,'models')) && Dir.exist?(File.join(NlpToolz::HOME,'jars'))
+      gem_home = NlpToolz::HOME
+      $stdout.print "download and unzip to: ".green
+      $stdout.puts "#{gem_home}".blue
+      [
+        'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AACw8Y04KnFotOpBkzcfLxmwa/jars.zip',
+        'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AADUSMRMVg3n54Djdy9BWYVEa/models.zip',
+      ].each do |link|
+        loaded_file = link.split('/').last.sub('?dl=0','')
+        $stdout.print "download: ".green
+        $stdout.puts "#{loaded_file}".blue
+
+        system( "wget -P #{gem_home} #{link}")
+
+        $stdout.puts "extracting …".green
+        unzip_file(File.join(gem_home,loaded_file),gem_home)
+        FileUtils.rm(File.join(gem_home,loaded_file))
+      end
+      $stdout.puts "add abbsolute path to language config".green
+      add_path_in_lanikernel
+    else
+      $stdout.puts "files exist".green
+    end
+  end
+end
 
 desc 'sentence detection'
 arg_name '"text to split into sentences"'
