@@ -41,7 +41,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "rake"
 
   #for downloading models and jars
-  gem.add_runtime_dependency "schiphol"
   gem.add_runtime_dependency "rubyzip"
   gem.add_runtime_dependency "zip-zip"
 end

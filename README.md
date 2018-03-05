@@ -24,8 +24,10 @@ see: [nlp_toolz.rb](https://github.com/LeFnord/nlp_toolz/blob/master/lib/nlp_too
 
 ## Docker
 
-- build: `docker build -t nlp_toolz_java_6 .`
-- run : `docker run --rm -ti nlp_toolz_java_6`
+Use this Dockerfile [lefnord/nlp_toolz](https://hub.docker.com/r/lefnord/nlp_toolz/) for local development, it includes the needed jars and models.
+
+- build: `docker build -t lefnord/nlp_toolz .`
+- run: `docker run --rm -ti lefnord/nlp_toolz`
 
 ## Contributing
 
