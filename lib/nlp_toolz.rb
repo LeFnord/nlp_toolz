@@ -31,7 +31,6 @@ require "nlp_toolz/parser"
 
 module NlpToolz
 
-
   module_function
 
   def check_dependencies

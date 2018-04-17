@@ -50,19 +50,15 @@ RUN echo 'export RBENV_ROOT=/usr/local/rbenv' >> /root/.bashrc \
 
 ENV PATH /usr/local/rbenv/bin:/usr/local/rbenv/shims:$PATH
 
-RUN eval "$(rbenv init -)"; rbenv install 2.4.3 \
-  &&  eval "$(rbenv init -)"; rbenv global 2.4.3 \
+RUN eval "$(rbenv init -)"; rbenv install 2.5.1 \
+  &&  eval "$(rbenv init -)"; rbenv global 2.5.1 \
   &&  eval "$(rbenv init -)"; gem install bundler -f
 
 ADD . /root/app
 WORKDIR /root/app
 
-RUN wget -P . 'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AACw8Y04KnFotOpBkzcfLxmwa/jars.zip'
-RUN unzip jars.zip
-
-RUN wget -P . 'https://dl.dropboxusercontent.com/sh/1layyjgf5h0wwi3/AADUSMRMVg3n54Djdy9BWYVEa/models.zip'
-RUN unzip models.zip
-
 RUN eval "$(rbenv init -)"; bundle install
+RUN eval "$(rbenv init -)"; bundle exec rake install
+RUN eval "$(rbenv init -)"; nlp_toolz init
 
 CMD ["/bin/bash"]
